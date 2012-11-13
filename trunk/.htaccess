@@ -2,4 +2,4 @@ RewriteEngine on
 RewriteBase /oms/trunk/
 
 RewriteCond $1 !^(index\.php|images|robots\.txt|css|js)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+RewriteRule ^(.*)$ /oms/trunk/index.php/$1 [L]
