@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : a3ncabal.dyndns.info
+Source Server         : localhost
 Source Server Version : 50522
-Source Host           : 122.255.120.139:3306
+Source Host           : localhost:3306
 Source Database       : order
 
 Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2012-04-19 22:19:43
+Date: 2012-11-14 13:39:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,7 +68,7 @@ CREATE TABLE `client` (
   `twitter_id_client` varchar(5000) DEFAULT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of client
@@ -154,7 +154,7 @@ INSERT INTO `color` VALUES ('1', 'Nude');
 INSERT INTO `color` VALUES ('2', 'Grey');
 INSERT INTO `color` VALUES ('3', 'Coffee');
 INSERT INTO `color` VALUES ('4', 'Black');
-INSERT INTO `color` VALUES ('6', 'none');
+INSERT INTO `color` VALUES ('6', 'None');
 
 -- ----------------------------
 -- Table structure for `delivery_address`
@@ -162,6 +162,7 @@ INSERT INTO `color` VALUES ('6', 'none');
 DROP TABLE IF EXISTS `delivery_address`;
 CREATE TABLE `delivery_address` (
   `delivery_address_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_my_id` int(11) NOT NULL,
   `delivery_info_id` int(11) DEFAULT NULL,
   `name_delivery` varchar(500) DEFAULT NULL,
   `address_delivery` varchar(500) NOT NULL,
@@ -172,24 +173,6 @@ CREATE TABLE `delivery_address` (
 
 -- ----------------------------
 -- Records of delivery_address
--- ----------------------------
-
--- ----------------------------
--- Table structure for `delivery_address_copy`
--- ----------------------------
-DROP TABLE IF EXISTS `delivery_address_copy`;
-CREATE TABLE `delivery_address_copy` (
-  `delivery_address_id` int(11) NOT NULL AUTO_INCREMENT,
-  `delivery_info_id` int(11) DEFAULT NULL,
-  `name_delivery` varchar(500) DEFAULT NULL,
-  `address_delivery` varchar(500) NOT NULL,
-  `phone_delivery` int(11) DEFAULT NULL,
-  `email_delivery` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`delivery_address_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of delivery_address_copy
 -- ----------------------------
 
 -- ----------------------------
@@ -293,10 +276,10 @@ CREATE TABLE `item` (
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('6', 'xtraslim', '169.00');
-INSERT INTO `item` VALUES ('7', 'magnetik', '159.00');
-INSERT INTO `item` VALUES ('8', 'ultraslim', '230.00');
-INSERT INTO `item` VALUES ('9', 'losyen', '10.00');
+INSERT INTO `item` VALUES ('6', 'Xtraslim', '169.00');
+INSERT INTO `item` VALUES ('7', 'Magnetik', '159.00');
+INSERT INTO `item` VALUES ('8', 'Ultraslim', '230.00');
+INSERT INTO `item` VALUES ('9', 'Losyen', '10.00');
 INSERT INTO `item` VALUES ('10', 'Bengkung Lengan', '15.00');
 INSERT INTO `item` VALUES ('11', 'Losyen (100ml X 24)', '356.00');
 
@@ -436,7 +419,7 @@ INSERT INTO `size` VALUES ('7', '4XL');
 INSERT INTO `size` VALUES ('8', '5XL');
 INSERT INTO `size` VALUES ('9', '6XL');
 INSERT INTO `size` VALUES ('12', '100ml');
-INSERT INTO `size` VALUES ('13', 'none');
+INSERT INTO `size` VALUES ('13', 'None');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -460,58 +443,57 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '', '', 'Azaliha Abdullah', '72, Jalan Keranji 11, Taman Keranji, Alor Mengkudu, 05400, Alor Setar, Kedah', '0162052420', 'azaliha@gmail.com', 'facebook.com/azaliha', null, '1');
-INSERT INTO `user` VALUES ('2', '', '', 'Zahirah Saidin', 'Perlis', '0191231231', 'zahirah@gmail.com', null, null, '1');
 
 -- ----------------------------
 -- View structure for `client_list`
 -- ----------------------------
 DROP VIEW IF EXISTS `client_list`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `client_list` AS select `order_my`.`order_my_id` AS `order_my_id`,`order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`client`.`client` AS `client`,`order_type`.`type` AS `type`,`client`.`phone_client` AS `phone_client`,`client`.`email_client` AS `email_client`,`order_my`.`order_status` AS `order_status` from (((`order_my` join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) join `client` on((`client`.`client_id` = `order_my`.`client_id`))) join `order_type` on((`order_type`.`order_type_id` = `order_my`.`order_type_id`))) order by `client`.`client`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `client_list` AS select `order_my`.`order_my_id` AS `order_my_id`,`order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`client`.`client` AS `client`,`order_type`.`type` AS `type`,`client`.`phone_client` AS `phone_client`,`client`.`email_client` AS `email_client`,`order_my`.`order_status` AS `order_status` from (((`order_my` join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) join `client` on((`client`.`client_id` = `order_my`.`client_id`))) join `order_type` on((`order_type`.`order_type_id` = `order_my`.`order_type_id`))) order by `client`.`client` ;
 
 -- ----------------------------
 -- View structure for `delivery_info_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `delivery_info_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `delivery_info_view` AS select `delivery_info`.`delivery_info_id` AS `delivery_info_id`,`delivery_info`.`order_my_id` AS `order_my_id`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by`,`delivery_address`.`name_delivery` AS `name_delivery`,`delivery_address`.`address_delivery` AS `address_delivery`,`delivery_address`.`phone_delivery` AS `phone_delivery`,`delivery_address`.`email_delivery` AS `email_delivery`,`delivery_address`.`delivery_address_id` AS `delivery_address_id` from ((`delivery_info` join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `delivery_address` on((`delivery_info`.`delivery_info_id` = `delivery_address`.`delivery_info_id`))) where (`delivery_info`.`order_my_id` = 13) order by `delivery_info`.`delivery_info_id`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `delivery_info_view` AS select `delivery_info`.`delivery_info_id` AS `delivery_info_id`,`delivery_info`.`order_my_id` AS `order_my_id`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by`,`delivery_address`.`name_delivery` AS `name_delivery`,`delivery_address`.`address_delivery` AS `address_delivery`,`delivery_address`.`phone_delivery` AS `phone_delivery`,`delivery_address`.`email_delivery` AS `email_delivery`,`delivery_address`.`delivery_address_id` AS `delivery_address_id` from ((`delivery_info` join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `delivery_address` on((`delivery_info`.`delivery_info_id` = `delivery_address`.`delivery_info_id`))) where (`delivery_info`.`order_my_id` = 13) order by `delivery_info`.`delivery_info_id` ;
 
 -- ----------------------------
 -- View structure for `exchange_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `exchange_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `exchange_view` AS select `exchange`.`exchange_id` AS `exchange_id`,`exchange`.`id` AS `id`,`exchange`.`exchange_approve` AS `exchange_approve`,`exchange`.`return_tracking_no` AS `return_tracking_no`,`exchange`.`date_exchange` AS `date_exchange`,`size`.`size` AS `size`,`exchange`.`remarks` AS `remarks` from (`exchange` join `size` on((`size`.`size_id` = `exchange`.`size_id`))) where (`exchange`.`id` = 18);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `exchange_view` AS select `exchange`.`exchange_id` AS `exchange_id`,`exchange`.`id` AS `id`,`exchange`.`exchange_approve` AS `exchange_approve`,`exchange`.`return_tracking_no` AS `return_tracking_no`,`exchange`.`date_exchange` AS `date_exchange`,`size`.`size` AS `size`,`exchange`.`remarks` AS `remarks` from (`exchange` join `size` on((`size`.`size_id` = `exchange`.`size_id`))) where (`exchange`.`id` = 18) ;
 
 -- ----------------------------
 -- View structure for `item_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `item_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) ;
 
 -- ----------------------------
 -- View structure for `item_where_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `item_where_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_where_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 5) order by `order_item`.`id`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_where_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 5) order by `order_item`.`id` ;
 
 -- ----------------------------
 -- View structure for `order_item_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `order_item_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_item_view` AS select `order_item`.`id` AS `id`,`order_item`.`order_my_id` AS `order_my_id`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 1) order by `order_item`.`id`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_item_view` AS select `order_item`.`id` AS `id`,`order_item`.`order_my_id` AS `order_my_id`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 1) order by `order_item`.`id` ;
 
 -- ----------------------------
 -- View structure for `order_summary_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `order_summary_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_summary_view` AS select `order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`bank`.`bank` AS `bank`,`payment_info`.`total_payment` AS `total_payment`,`payment_info`.`date_payment` AS `date_payment`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by` from (((((`order_my` left join `payment_info` on((`payment_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) left join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) where (`order_my`.`order_my_id` = 5);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_summary_view` AS select `order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`bank`.`bank` AS `bank`,`payment_info`.`total_payment` AS `total_payment`,`payment_info`.`date_payment` AS `date_payment`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by` from (((((`order_my` left join `payment_info` on((`payment_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) left join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) where (`order_my`.`order_my_id` = 5) ;
 
 -- ----------------------------
 -- View structure for `order_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `order_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_view` AS select `order_my`.`order_my_id` AS `order_my_id` from ((((((((((((((((((`order_my` join `client` on((`client`.`client_id` = `order_my`.`client_id`))) join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) join `order_item` on((`order_item`.`order_my_id` = `order_my`.`order_my_id`))) join `payment_info` on((`order_my`.`order_my_id` = `payment_info`.`order_my_id`))) join `order_type` on((`order_my`.`order_type_id` = `order_type`.`order_type_id`))) join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) join `mode_payment` on((`mode_payment`.`mode_payment_id` = `payment_info`.`mode_payment_id`))) join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) join `size` on((`order_item`.`size_id` = `size`.`size_id`))) join `delivery_address` on((`delivery_address`.`delivery_info_id` = `delivery_info`.`delivery_info_id`))) join `acknowledgeable` on((`acknowledgeable`.`order_my_id` = `order_my`.`order_my_id`))) join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) join `feedback` on((`feedback`.`order_my_id` = `order_my`.`order_my_id`))) join `group` on((`client`.`group_id` = `group`.`group_id`))) join `user` on((`group`.`group_id` = `user`.`group_id`))) join `exchange` on(((`exchange`.`size_id` = `size`.`size_id`) and (`order_item`.`id` = `exchange`.`id`))));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_view` AS select `order_my`.`order_my_id` AS `order_my_id` from ((((((((((((((((((`order_my` join `client` on((`client`.`client_id` = `order_my`.`client_id`))) join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) join `order_item` on((`order_item`.`order_my_id` = `order_my`.`order_my_id`))) join `payment_info` on((`order_my`.`order_my_id` = `payment_info`.`order_my_id`))) join `order_type` on((`order_my`.`order_type_id` = `order_type`.`order_type_id`))) join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) join `mode_payment` on((`mode_payment`.`mode_payment_id` = `payment_info`.`mode_payment_id`))) join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) join `size` on((`order_item`.`size_id` = `size`.`size_id`))) join `delivery_address` on((`delivery_address`.`delivery_info_id` = `delivery_info`.`delivery_info_id`))) join `acknowledgeable` on((`acknowledgeable`.`order_my_id` = `order_my`.`order_my_id`))) join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) join `feedback` on((`feedback`.`order_my_id` = `order_my`.`order_my_id`))) join `group` on((`client`.`group_id` = `group`.`group_id`))) join `user` on((`group`.`group_id` = `user`.`group_id`))) join `exchange` on(((`exchange`.`size_id` = `size`.`size_id`) and (`order_item`.`id` = `exchange`.`id`)))) ;
 
 -- ----------------------------
 -- View structure for `order_where_summary_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `order_where_summary_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_where_summary_view` AS select `order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`bank`.`bank` AS `bank`,`payment_info`.`total_payment` AS `total_payment`,`payment_info`.`date_payment` AS `date_payment`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by` from (((((`order_my` left join `payment_info` on((`payment_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) left join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) where (`order_my`.`order_my_id` = 5);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_where_summary_view` AS select `order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`bank`.`bank` AS `bank`,`payment_info`.`total_payment` AS `total_payment`,`payment_info`.`date_payment` AS `date_payment`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by` from (((((`order_my` left join `payment_info` on((`payment_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) left join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) where (`order_my`.`order_my_id` = 5) ;
