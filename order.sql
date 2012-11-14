@@ -1,16 +1,26 @@
 /*
 Navicat MySQL Data Transfer
 
+<<<<<<< .mine
+Source Server         : localhost
+Source Server Version : 50149
+Source Host           : localhost:3306
+=======
 Source Server         : localhost
 Source Server Version : 50522
 Source Host           : localhost:3306
+>>>>>>> .r5
 Source Database       : order
 
 Target Server Type    : MYSQL
-Target Server Version : 50522
+Target Server Version : 50149
 File Encoding         : 65001
 
+<<<<<<< .mine
+Date: 2012-11-14 01:35:04
+=======
 Date: 2012-11-14 13:39:43
+>>>>>>> .r5
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +52,7 @@ CREATE TABLE `bank` (
   `bank_id` int(11) NOT NULL AUTO_INCREMENT,
   `bank` varchar(500) NOT NULL,
   PRIMARY KEY (`bank_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bank
@@ -59,8 +69,8 @@ DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
   `client` varchar(500) NOT NULL,
-  `username` varchar(10) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL,
   `address_client` varchar(500) NOT NULL,
   `phone_client` varchar(10) NOT NULL,
   `email_client` varchar(100) DEFAULT NULL,
@@ -126,16 +136,7 @@ INSERT INTO `client` VALUES ('51', 'Faizatul Bt Ja\'afar Sidek', '', '', 'Lot 22
 INSERT INTO `client` VALUES ('52', 'Norazimah Bt Ismail @ Mat Daud', '', '', 'PT 477 Jalan 5 Desa Darulnaim, Pasir Tumbuh, 16150 Kota Bharu, Kelantan.', '0129906011', '', null, null, '2');
 INSERT INTO `client` VALUES ('53', 'Safiah Bt Ahmad Sukri', '', '', 'Syarikat Takaful Malaysia, No 28, Jalan Perda Barat 1, Bandar Baru Perda, 14000 Bukit Mertajam, Pulau Pinang.', '0194299801', 'safiah.ahmadsukri@yahoo.com', null, null, '2');
 INSERT INTO `client` VALUES ('54', 'Azaliha Abdullah', 'azaliha', '123123', 'No. 72, Jalan Keranji 11, Taman Keranji, 05400, Alor Setar, Kedah', '0162052420', 'azaliha@gmail.com', null, null, '1');
-INSERT INTO `client` VALUES ('55', 'Zahirah Shadin', 'zahirah', '123123', '8, Taman Desa Pulai, Jalan Padang Behor, 01000 Kangar, Perlis.', '0195711909', 'zahirah@gmail.com', null, null, '1');
-INSERT INTO `client` VALUES ('58', 'Nur Idayu Bt mohd safie', null, null, 'smk telupid, peti surat 02, telupid,89300 sabah.', '0129159392', 'xx@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('59', 'Noorazura Binti Asnawi', null, null, 'No 37, Jalan SP 4/11, Bandar Saujana Putra, 42610 Jenjarom, Selangor.', '0196081502', 'xx1@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('60', 'Maryani Bt Haron', null, null, '4355, Jalan Samarinda 9, Taman Samarinda, Pengkalan,78000 Alor Gajah, Melaka.', '0197741810', 'xx2@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('61', 'Nor Asfazilah Binti Abdullah', null, null, '8914 Jln Kiri 2, Kg Nakhoda, 68100, Batu Caves, Selangor', '0133470988', 'asfazilah@yahoo.com', '', '', '2');
-INSERT INTO `client` VALUES ('62', 'Norazliah Bt Ani', null, null, 'SMK Ringlet, 39200 Ringlet, Cameron Highlands, Pahang.', '0125507095', 'xx3@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('63', 'Anis Fairuznajua Bt Mohamad', null, null, 'No 318, Jalan Desa Aman S8/8, Taman Desa Aman, 09410 Padang Serai, Kulim, Kedah.', '0174554820', 'xx4@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('64', 'Maslinda Binti Mohamad', null, null, 'No 21, Jalan 15, Taman Berlian, Sungai Jelok, 43000 Kajang, Selangor.', '0123414162', 'xx5@gmail.com', '', '', '2');
-INSERT INTO `client` VALUES ('65', 'Dahniar Bt Hussain', null, null, 'Lot 2027 D, 47000 Sungai Buloh, Selangor.', '0162128490', 'dahniarfamily@yahoo.com', '', '', '2');
-INSERT INTO `client` VALUES ('66', 'Rozita Bt Sahir', null, null, 'LOT 1044 KG BARU ASSAM JAWA\r\n45700 BUKIT ROTAN\r\nSELANGOR.', '0147162393', 'daniashop@yahoo.com', '', '', '2');
+INSERT INTO `client` VALUES ('55', 'Zahirah Shadin', 'zahirah', '123123', 'Perlis', '0191234567', 'zahirah@gmail.com', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `color`
@@ -145,7 +146,7 @@ CREATE TABLE `color` (
   `color_id` int(11) NOT NULL AUTO_INCREMENT,
   `color` varchar(255) NOT NULL,
   PRIMARY KEY (`color_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of color
@@ -154,7 +155,7 @@ INSERT INTO `color` VALUES ('1', 'Nude');
 INSERT INTO `color` VALUES ('2', 'Grey');
 INSERT INTO `color` VALUES ('3', 'Coffee');
 INSERT INTO `color` VALUES ('4', 'Black');
-INSERT INTO `color` VALUES ('6', 'None');
+INSERT INTO `color` VALUES ('5', 'None');
 
 -- ----------------------------
 -- Table structure for `delivery_address`
@@ -169,11 +170,12 @@ CREATE TABLE `delivery_address` (
   `phone_delivery` int(11) DEFAULT NULL,
   `email_delivery` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`delivery_address_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of delivery_address
 -- ----------------------------
+INSERT INTO `delivery_address` VALUES ('1', '1', 'same', '72, Jalan Keranji 11, Taman Keranji, 05400, Alor Mengkudu, Alor Setar, Kedah Darul Aman', '162172420', 'dhiauddin@gmail.com');
 
 -- ----------------------------
 -- Table structure for `delivery_info`
@@ -184,14 +186,15 @@ CREATE TABLE `delivery_info` (
   `order_my_id` int(11) NOT NULL,
   `delivery_type_id` int(11) NOT NULL,
   `delivery_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `tracking_no` varchar(20) DEFAULT NULL,
+  `tracking_no` varchar(50) DEFAULT NULL,
   `delivered_by` varchar(500) NOT NULL,
   PRIMARY KEY (`delivery_info_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of delivery_info
 -- ----------------------------
+INSERT INTO `delivery_info` VALUES ('1', '1', '1', '2012-04-09 00:41:15', 'poiuytr', 'zah');
 
 -- ----------------------------
 -- Table structure for `delivery_type`
@@ -201,15 +204,13 @@ CREATE TABLE `delivery_type` (
   `delivery_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `delivery_type` varchar(500) NOT NULL,
   PRIMARY KEY (`delivery_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of delivery_type
 -- ----------------------------
 INSERT INTO `delivery_type` VALUES ('1', 'Poslaju');
 INSERT INTO `delivery_type` VALUES ('2', 'By Hand');
-INSERT INTO `delivery_type` VALUES ('3', 'AirMail');
-INSERT INTO `delivery_type` VALUES ('6', 'Pos Daftar');
 
 -- ----------------------------
 -- Table structure for `exchange`
@@ -271,17 +272,18 @@ CREATE TABLE `item` (
   `item` varchar(500) NOT NULL,
   `price` decimal(15,2) NOT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('6', 'Xtraslim', '169.00');
-INSERT INTO `item` VALUES ('7', 'Magnetik', '159.00');
+INSERT INTO `item` VALUES ('1', 'Xtra Slim', '169.90');
+INSERT INTO `item` VALUES ('2', 'Magnetik', '159.90');
 INSERT INTO `item` VALUES ('8', 'Ultraslim', '230.00');
 INSERT INTO `item` VALUES ('9', 'Losyen', '10.00');
 INSERT INTO `item` VALUES ('10', 'Bengkung Lengan', '15.00');
 INSERT INTO `item` VALUES ('11', 'Losyen (100ml X 24)', '356.00');
+>>>>>>> .r5
 
 -- ----------------------------
 -- Table structure for `method_order`
@@ -291,7 +293,7 @@ CREATE TABLE `method_order` (
   `method_order_id` int(11) NOT NULL AUTO_INCREMENT,
   `method_order` varchar(255) NOT NULL,
   PRIMARY KEY (`method_order_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of method_order
@@ -300,7 +302,6 @@ INSERT INTO `method_order` VALUES ('1', 'SMS');
 INSERT INTO `method_order` VALUES ('2', 'Email');
 INSERT INTO `method_order` VALUES ('3', 'Facebook');
 INSERT INTO `method_order` VALUES ('4', 'Phone Call');
-INSERT INTO `method_order` VALUES ('5', 'Website');
 
 -- ----------------------------
 -- Table structure for `mode_payment`
@@ -310,7 +311,7 @@ CREATE TABLE `mode_payment` (
   `mode_payment_id` int(11) NOT NULL AUTO_INCREMENT,
   `mode_payment` varchar(255) NOT NULL,
   PRIMARY KEY (`mode_payment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mode_payment
@@ -319,8 +320,7 @@ INSERT INTO `mode_payment` VALUES ('1', 'Online Banking');
 INSERT INTO `mode_payment` VALUES ('2', 'Interbank Transfer');
 INSERT INTO `mode_payment` VALUES ('3', 'Cash Deposit Machine');
 INSERT INTO `mode_payment` VALUES ('4', 'Cheque Deposit Machine');
-INSERT INTO `mode_payment` VALUES ('5', 'COD');
-INSERT INTO `mode_payment` VALUES ('7', 'TT Transfer');
+INSERT INTO `mode_payment` VALUES ('5', 'Cash');
 
 -- ----------------------------
 -- Table structure for `order_item`
@@ -336,11 +336,13 @@ CREATE TABLE `order_item` (
   `discount` decimal(15,2) NOT NULL,
   `total_price` decimal(15,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_item
 -- ----------------------------
+INSERT INTO `order_item` VALUES ('1', '1', '2', '5', '3', '98', '12.00', '13789.78');
+INSERT INTO `order_item` VALUES ('2', '1', '1', '7', '4', '2', '0.00', '339.80');
 
 -- ----------------------------
 -- Table structure for `order_my`
@@ -348,17 +350,18 @@ CREATE TABLE `order_item` (
 DROP TABLE IF EXISTS `order_my`;
 CREATE TABLE `order_my` (
   `order_my_id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_order` datetime NOT NULL,
+  `date_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `method_order_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `order_type_id` int(11) NOT NULL,
   `order_status` int(1) NOT NULL,
   PRIMARY KEY (`order_my_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_my
 -- ----------------------------
+INSERT INTO `order_my` VALUES ('1', '2012-04-07 01:15:33', '1', '3', '1', '0');
 
 -- ----------------------------
 -- Table structure for `order_type`
@@ -368,7 +371,7 @@ CREATE TABLE `order_type` (
   `order_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(500) NOT NULL,
   PRIMARY KEY (`order_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_type
@@ -391,10 +394,25 @@ CREATE TABLE `payment_info` (
   `date_payment` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ref_no` varchar(500) NOT NULL,
   PRIMARY KEY (`payment_info_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of payment_info
+-- ----------------------------
+INSERT INTO `payment_info` VALUES ('1', '1', '1', '1000', '1', '2012-04-08 00:33:55', '098');
+
+-- ----------------------------
+-- Table structure for `payment_method`
+-- ----------------------------
+DROP TABLE IF EXISTS `payment_method`;
+CREATE TABLE `payment_method` (
+  `payment_method_id` int(11) NOT NULL,
+  `order_my_id` int(11) NOT NULL,
+  `payment` varchar(500) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of payment_method
 -- ----------------------------
 
 -- ----------------------------
@@ -405,7 +423,7 @@ CREATE TABLE `size` (
   `size_id` int(11) NOT NULL AUTO_INCREMENT,
   `size` varchar(500) NOT NULL,
   PRIMARY KEY (`size_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of size
@@ -448,25 +466,25 @@ INSERT INTO `user` VALUES ('1', '', '', 'Azaliha Abdullah', '72, Jalan Keranji 1
 -- View structure for `client_list`
 -- ----------------------------
 DROP VIEW IF EXISTS `client_list`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `client_list` AS select `order_my`.`order_my_id` AS `order_my_id`,`order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`client`.`client` AS `client`,`order_type`.`type` AS `type`,`client`.`phone_client` AS `phone_client`,`client`.`email_client` AS `email_client`,`order_my`.`order_status` AS `order_status` from (((`order_my` join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) join `client` on((`client`.`client_id` = `order_my`.`client_id`))) join `order_type` on((`order_type`.`order_type_id` = `order_my`.`order_type_id`))) order by `client`.`client` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `client_list` AS select `order`.`order_my`.`order_my_id` AS `order_my_id`,`order`.`order_my`.`date_order` AS `date_order`,`order`.`method_order`.`method_order` AS `method_order`,`order`.`client`.`client` AS `client`,`order`.`order_type`.`type` AS `type`,`order`.`client`.`phone_client` AS `phone_client`,`order`.`client`.`email_client` AS `email_client`,`order`.`order_my`.`order_status` AS `order_status` from (((`order_my` join `method_order` on((`order`.`method_order`.`method_order_id` = `order`.`order_my`.`method_order_id`))) join `client` on((`order`.`client`.`client_id` = `order`.`order_my`.`client_id`))) join `order_type` on((`order`.`order_type`.`order_type_id` = `order`.`order_my`.`order_type_id`))) order by `order`.`client`.`client`;
 
 -- ----------------------------
 -- View structure for `delivery_info_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `delivery_info_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `delivery_info_view` AS select `delivery_info`.`delivery_info_id` AS `delivery_info_id`,`delivery_info`.`order_my_id` AS `order_my_id`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by`,`delivery_address`.`name_delivery` AS `name_delivery`,`delivery_address`.`address_delivery` AS `address_delivery`,`delivery_address`.`phone_delivery` AS `phone_delivery`,`delivery_address`.`email_delivery` AS `email_delivery`,`delivery_address`.`delivery_address_id` AS `delivery_address_id` from ((`delivery_info` join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `delivery_address` on((`delivery_info`.`delivery_info_id` = `delivery_address`.`delivery_info_id`))) where (`delivery_info`.`order_my_id` = 13) order by `delivery_info`.`delivery_info_id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `delivery_info_view` AS select `order`.`delivery_info`.`delivery_info_id` AS `delivery_info_id`,`order`.`delivery_info`.`order_my_id` AS `order_my_id`,`order`.`delivery_type`.`delivery_type` AS `delivery_type`,`order`.`delivery_info`.`delivery_date` AS `delivery_date`,`order`.`delivery_info`.`tracking_no` AS `tracking_no`,`order`.`delivery_info`.`delivered_by` AS `delivered_by`,`order`.`delivery_address`.`name_delivery` AS `name_delivery`,`order`.`delivery_address`.`address_delivery` AS `address_delivery`,`order`.`delivery_address`.`phone_delivery` AS `phone_delivery`,`order`.`delivery_address`.`email_delivery` AS `email_delivery`,`order`.`delivery_address`.`delivery_address_id` AS `delivery_address_id` from ((`delivery_info` join `delivery_type` on((`order`.`delivery_type`.`delivery_type_id` = `order`.`delivery_info`.`delivery_type_id`))) left join `delivery_address` on((`order`.`delivery_info`.`delivery_info_id` = `order`.`delivery_address`.`delivery_info_id`))) where (`order`.`delivery_info`.`order_my_id` = 13) order by `order`.`delivery_info`.`delivery_info_id`;
 
 -- ----------------------------
 -- View structure for `exchange_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `exchange_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `exchange_view` AS select `exchange`.`exchange_id` AS `exchange_id`,`exchange`.`id` AS `id`,`exchange`.`exchange_approve` AS `exchange_approve`,`exchange`.`return_tracking_no` AS `return_tracking_no`,`exchange`.`date_exchange` AS `date_exchange`,`size`.`size` AS `size`,`exchange`.`remarks` AS `remarks` from (`exchange` join `size` on((`size`.`size_id` = `exchange`.`size_id`))) where (`exchange`.`id` = 18) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `exchange_view` AS select `order`.`exchange`.`exchange_id` AS `exchange_id`,`order`.`exchange`.`id` AS `id`,`order`.`exchange`.`exchange_approve` AS `exchange_approve`,`order`.`exchange`.`return_tracking_no` AS `return_tracking_no`,`order`.`exchange`.`date_exchange` AS `date_exchange`,`order`.`size`.`size` AS `size`,`order`.`exchange`.`remarks` AS `remarks` from (`exchange` join `size` on((`order`.`size`.`size_id` = `order`.`exchange`.`size_id`))) where (`order`.`exchange`.`id` = 18);
 
 -- ----------------------------
 -- View structure for `item_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `item_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_view` AS select `order`.`order_item`.`order_my_id` AS `order_my_id`,`order`.`item`.`item` AS `item`,`order`.`item`.`price` AS `price`,`order`.`size`.`size` AS `size`,`order`.`color`.`color` AS `color`,`order`.`order_item`.`quantity` AS `quantity`,`order`.`order_item`.`discount` AS `discount`,`order`.`order_item`.`total_price` AS `total_price`,`order`.`order_item`.`id` AS `id` from (((`order_item` join `item` on((`order`.`item`.`item_id` = `order`.`order_item`.`item_id`))) join `size` on((`order`.`size`.`size_id` = `order`.`order_item`.`size_id`))) join `color` on((`order`.`color`.`color_id` = `order`.`order_item`.`color_id`)));
 
 -- ----------------------------
 -- View structure for `item_where_view`
@@ -474,11 +492,10 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_vi
 DROP VIEW IF EXISTS `item_where_view`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `item_where_view` AS select `order_item`.`order_my_id` AS `order_my_id`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`order_item`.`id` AS `id` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 5) order by `order_item`.`id` ;
 
--- ----------------------------
 -- View structure for `order_item_view`
 -- ----------------------------
 DROP VIEW IF EXISTS `order_item_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_item_view` AS select `order_item`.`id` AS `id`,`order_item`.`order_my_id` AS `order_my_id`,`order_item`.`quantity` AS `quantity`,`order_item`.`discount` AS `discount`,`order_item`.`total_price` AS `total_price`,`item`.`item` AS `item`,`item`.`price` AS `price`,`size`.`size` AS `size`,`color`.`color` AS `color` from (((`order_item` join `item` on((`item`.`item_id` = `order_item`.`item_id`))) join `size` on((`size`.`size_id` = `order_item`.`size_id`))) join `color` on((`color`.`color_id` = `order_item`.`color_id`))) where (`order_item`.`order_my_id` = 1) order by `order_item`.`id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_item_view` AS select `order`.`order_item`.`id` AS `id`,`order`.`order_item`.`order_my_id` AS `order_my_id`,`order`.`order_item`.`quantity` AS `quantity`,`order`.`order_item`.`discount` AS `discount`,`order`.`order_item`.`total_price` AS `total_price`,`order`.`item`.`item` AS `item`,`order`.`item`.`price` AS `price`,`order`.`size`.`size` AS `size`,`order`.`color`.`color` AS `color` from (((`order_item` join `item` on((`order`.`item`.`item_id` = `order`.`order_item`.`item_id`))) join `size` on((`order`.`size`.`size_id` = `order`.`order_item`.`size_id`))) join `color` on((`order`.`color`.`color_id` = `order`.`order_item`.`color_id`))) where (`order`.`order_item`.`order_my_id` = 1) order by `order`.`order_item`.`id`;
 
 -- ----------------------------
 -- View structure for `order_summary_view`
@@ -497,3 +514,4 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_v
 -- ----------------------------
 DROP VIEW IF EXISTS `order_where_summary_view`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `order_where_summary_view` AS select `order_my`.`date_order` AS `date_order`,`method_order`.`method_order` AS `method_order`,`bank`.`bank` AS `bank`,`payment_info`.`total_payment` AS `total_payment`,`payment_info`.`date_payment` AS `date_payment`,`delivery_type`.`delivery_type` AS `delivery_type`,`delivery_info`.`delivery_date` AS `delivery_date`,`delivery_info`.`tracking_no` AS `tracking_no`,`delivery_info`.`delivered_by` AS `delivered_by` from (((((`order_my` left join `payment_info` on((`payment_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_info` on((`delivery_info`.`order_my_id` = `order_my`.`order_my_id`))) left join `delivery_type` on((`delivery_type`.`delivery_type_id` = `delivery_info`.`delivery_type_id`))) left join `bank` on((`bank`.`bank_id` = `payment_info`.`bank_id`))) left join `method_order` on((`method_order`.`method_order_id` = `order_my`.`method_order_id`))) where (`order_my`.`order_my_id` = 5) ;
+>>>>>>> .r5
