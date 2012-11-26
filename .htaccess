@@ -3,3 +3,5 @@ RewriteBase /oms/trunk/
 
 RewriteCond $1 !^(index\.php|images|robots\.txt|css|js)
 RewriteRule ^(.*)$ /oms/trunk/index.php/$1 [L]
+
+php_flag short_open_tag On
